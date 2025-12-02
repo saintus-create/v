@@ -1,10 +1,8 @@
 ---
 title: Components
-description: Here you can find all the components available in the library. We are working on adding more components.
+description: Component library.
 ---
 
-<script>
-	import ComponentsList from "$lib/components/components-list.svelte";
-</script>
+# Components
 
-<ComponentsList />
+List of components. Update `docs/content/components/index.md`.

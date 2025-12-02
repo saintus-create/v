@@ -10,6 +10,7 @@
 	import CommandMenu from "./command-menu/command-menu.svelte";
 	import { getColors } from "$lib/colors.js";
 	import { mainNavItems } from "$lib/navigation.js";
+	import { siteConfig } from "$lib/config.js";
 	const colors = getColors();
 </script>
 
@@ -21,7 +22,7 @@
 			<MobileNav class="flex lg:hidden" />
 			<Button href="/" variant="ghost" size="icon" class="hidden size-8 lg:flex">
 				<Logo class="size-5" />
-				<span class="sr-only">shadcn-svelte</span>
+				<span class="sr-only">{siteConfig.name}</span>
 			</Button>
 			<MainNav items={mainNavItems} class="hidden lg:flex" />
 			<div class="ms-auto flex items-center gap-2 md:flex-1 md:justify-end">

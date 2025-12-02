@@ -41,7 +41,7 @@
 			const cmd = getCommand(
 				userConfig.current.packageManager,
 				"execute",
-				`shadcn-svelte add ${componentName}`
+				`${siteConfig.name} add ${componentName}`
 			);
 			copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
 		} else {
@@ -59,7 +59,7 @@
 		const cmd = getCommand(
 			userConfig.current.packageManager,
 			"execute",
-			`shadcn-svelte add ${block.name}`
+			`${siteConfig.name} add ${block.name}`
 		);
 		copyPayload = `${cmd.command} ${cmd.args.join(" ")}`.trim();
 	}

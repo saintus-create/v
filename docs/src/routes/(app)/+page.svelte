@@ -12,11 +12,11 @@
 	import Button from "$lib/registry/ui/button/button.svelte";
 	import CardsDemo from "$lib/components/cards/demo.svelte";
 	import Metadata from "$lib/components/metadata.svelte";
+	import { siteConfig } from "$lib/config.js";
 	import { IsMobile } from "$lib/registry/hooks/is-mobile.svelte.js";
 
-	const title = "Build your Component Library";
-	const description =
-		"A set of beautifully-designed, accessible components and a code distribution platform. Open Source. Open Code.";
+	const title = siteConfig.name;
+	const description = siteConfig.description;
 
 	const mobile = new IsMobile();
 </script>
@@ -25,12 +25,11 @@
 
 <div class="flex flex-1 flex-col">
 	<PageHeader>
-		<Announcement />
 		<PageHeaderHeading>{title}</PageHeaderHeading>
 		<PageHeaderDescription>{description}</PageHeaderDescription>
 		<PageActions>
 			<Button href="/docs/installation" size="sm">Get Started</Button>
-			<Button href="/blocks" size="sm" variant="ghost">Browse Blocks</Button>
+			<Button href="/docs/components" size="sm" variant="ghost">Components</Button>
 		</PageActions>
 	</PageHeader>
 	{#if !mobile.current}
@@ -40,30 +39,16 @@
 		</PageNav>
 	{/if}
 	<div class="container-wrapper section-soft flex-1 pb-6">
-		<div class="container overflow-hidden">
+		<div class="container overflow-hidden py-12">
 			<section
-				class="border-border/50 -mx-4 w-[160vw] overflow-hidden rounded-lg border md:hidden md:w-[150vw]"
+				class="mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20"
 			>
-				<enhanced:img
-					class="block object-cover dark:hidden"
-					src="../../../static/img/registry/dashboard-01-light-landing.png?w=716"
-					alt="Dashboard"
-					fetchpriority={mobile.current ? "high" : undefined}
-					loading={mobile.current ? "eager" : "lazy"}
-				/>
-				<enhanced:img
-					class="hidden object-cover dark:block"
-					src="../../../static/img/registry/dashboard-01-dark-landing.png?w=716"
-					alt="Dashboard"
-					fetchpriority="high"
-					loading={mobile.current ? "eager" : "lazy"}
-				/>
+				<span class="text-muted-foreground text-center text-lg">
+					This is a shell for your documentation site. Update the content in <code
+						>docs/content</code
+					>.
+				</span>
 			</section>
-			{#if !mobile.current}
-				<section class="theme-container hidden md:block">
-					<CardsDemo />
-				</section>
-			{/if}
 		</div>
 	</div>
 </div>

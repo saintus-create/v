@@ -7,7 +7,9 @@
 
 	async function getGithubStarCount() {
 		try {
-			const res = await fetch("https://ungh.cc/repos/huntabyte/shadcn-svelte");
+			const repoUrl = new URL(siteConfig.links.github);
+			const repoPath = repoUrl.pathname.slice(1); // Remove leading slash
+			const res = await fetch(`https://ungh.cc/repos/${repoPath}`);
 			const data = await res.json();
 			return data.repo?.stars ?? FALLBACK_STAR_COUNT;
 		} catch (error) {

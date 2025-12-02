@@ -2,16 +2,7 @@ import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
 
 /** List new components here to highlight them in the sidebar */
-export const NEW_COMPONENTS = new Set([
-	"item",
-	"button-group",
-	"kbd",
-	"spinner",
-	"input-group",
-	"field",
-	"empty",
-	"native-select",
-]);
+export const NEW_COMPONENTS = new Set([]);
 
 export type NavItem = {
 	title: string;
@@ -32,7 +23,7 @@ export type NavItemWithChildren = NavItem & {
 };
 
 function generateGetStartedNav(): SidebarNavItem[] {
-	const getStartedNavItems: SidebarNavItem[] = [
+	return [
 		{
 			title: "Introduction",
 			href: "/docs",
@@ -43,75 +34,13 @@ function generateGetStartedNav(): SidebarNavItem[] {
 			href: "/docs/installation",
 			items: [],
 		},
-		{
-			title: "components.json",
-			href: "/docs/components-json",
-			items: [],
-		},
-		{
-			title: "Theming",
-			href: "/docs/theming",
-			items: [],
-		},
-		{
-			title: "Dark Mode",
-			href: "/docs/dark-mode",
-			items: [],
-		},
-		{
-			title: "CLI",
-			href: "/docs/cli",
-			items: [],
-		},
-		{
-			title: "JavaScript",
-			href: "/docs/javascript",
-			items: [],
-		},
-		// {
-		// 	title: "Blocks",
-		// 	href: "/docs/blocks",
-		// 	items: [],
-		// },
-		{
-			title: "Figma",
-			href: "/docs/figma",
-			items: [],
-		},
-		{
-			title: "llms.txt",
-			href: "/llms.txt",
-			items: [],
-		},
-		{
-			title: "Changelog",
-			href: "/docs/changelog",
-			items: [],
-		},
-		{
-			title: "Legacy Docs",
-			href: "/docs/legacy",
-			items: [],
-		},
 	];
-
-	return getStartedNavItems;
 }
-
-const INSTALL_ORDER = ["SvelteKit", "Vite", "Astro", "Manual Installation"];
 
 function generateInstallationNav(): SidebarNavItem[] {
 	const installationNavItems: SidebarNavItem[] = [];
 
-	const index = installation.find((doc) => doc.title === "Installation");
-	if (index) {
-		installationNavItems.push({
-			title: index.title,
-			href: `/docs/installation`,
-			items: [],
-		});
-	}
-
+	// Add generic installation docs if available
 	for (const doc of installation) {
 		installationNavItems.push({
 			title: doc.title,
@@ -120,23 +49,11 @@ function generateInstallationNav(): SidebarNavItem[] {
 		});
 	}
 
-	return installationNavItems.sort((a, b) => {
-		const aIndex = INSTALL_ORDER.indexOf(a.title);
-		const bIndex = INSTALL_ORDER.indexOf(b.title);
-		return aIndex - bIndex;
-	});
+	return installationNavItems;
 }
 
 function generateComponentsNav(): SidebarNavItem[] {
 	const componentsNavItems: SidebarNavItem[] = [];
-	const index = components.find((doc) => doc.title === "Components");
-	if (index) {
-		componentsNavItems.push({
-			title: index.title,
-			href: `/docs/components`,
-			items: [],
-		});
-	}
 
 	for (const doc of components) {
 		if (doc.title === "Components") continue;
@@ -151,90 +68,9 @@ function generateComponentsNav(): SidebarNavItem[] {
 	return componentsNavItems;
 }
 
-function generateDarkModeNav(): SidebarNavItem[] {
-	const darkModeNavItems: SidebarNavItem[] = [
-		{
-			title: "Svelte",
-			href: "/docs/dark-mode/svelte",
-			items: [],
-		},
-		{
-			title: "Astro",
-			href: "/docs/dark-mode/astro",
-			items: [],
-		},
-	];
-
-	return darkModeNavItems;
-}
-
-function generateRegistryNav(): SidebarNavItem[] {
-	const registryNavItems: SidebarNavItem[] = [
-		{
-			title: "Registry",
-			href: "/docs/registry",
-			items: [],
-		},
-		{
-			title: "Getting Started",
-			href: "/docs/registry/getting-started",
-			items: [],
-		},
-		{
-			title: "FAQ",
-			href: "/docs/registry/faq",
-			items: [],
-		},
-		{
-			title: "Examples",
-			href: "/docs/registry/examples",
-			items: [],
-		},
-		{
-			title: "registry.json",
-			href: "/docs/registry/registry-json",
-			items: [],
-		},
-		{
-			title: "registry-item.json",
-			href: "/docs/registry/registry-item-json",
-			items: [],
-		},
-	];
-
-	return registryNavItems;
-}
-
-function generateMigrationNav(): SidebarNavItem[] {
-	const migrationNavItems: SidebarNavItem[] = [];
-
-	const index = migration.find((doc) => doc.title === "Migration");
-	if (index) {
-		migrationNavItems.push({
-			title: index.title,
-			href: `/docs/migration`,
-			items: [],
-		});
-	}
-
-	for (const doc of migration) {
-		if (doc.title === "Migration") continue;
-		migrationNavItems.push({
-			title: doc.title,
-			href: `/docs/migration/${doc.slug}`,
-			items: [],
-		});
-	}
-
-	return migrationNavItems;
-}
-
 const getStartedNav = generateGetStartedNav();
-const migrationNav = generateMigrationNav();
 const componentsNav = generateComponentsNav();
 const installationNav = generateInstallationNav();
-const darkModeNav = generateDarkModeNav();
-const registryNav = generateRegistryNav();
 
 export const sidebarNavItems: SidebarNavItem[] = [
 	{
@@ -242,24 +78,12 @@ export const sidebarNavItems: SidebarNavItem[] = [
 		items: getStartedNav,
 	},
 	{
-		title: "Migration",
-		items: migrationNav.filter((item) => item.title !== "Migration"),
-	},
-	{
 		title: "Components",
-		items: componentsNav.filter((item) => item.title !== "Components"),
+		items: componentsNav,
 	},
 	{
 		title: "Installation",
-		items: installationNav.filter((item) => item.title !== "Installation"),
-	},
-	{
-		title: "Dark Mode",
-		items: darkModeNav,
-	},
-	{
-		title: "Registry",
-		items: registryNav,
+		items: installationNav,
 	},
 ];
 
@@ -272,32 +96,13 @@ export const mainNavItems: NavItem[] = [
 		title: "Components",
 		href: "/docs/components",
 	},
-	{
-		title: "Blocks",
-		href: "/blocks",
-	},
-	{
-		title: "Charts",
-		href: "/charts/area",
-	},
-	{
-		title: "Themes",
-		href: "/themes",
-	},
-	{
-		title: "Colors",
-		href: "/colors",
-	},
 ];
 
 export function getFullNavItems(): Array<SidebarNavItem & { index: number }> {
 	return [
 		...getStartedNav,
-		...migrationNav,
 		...componentsNav,
-		...installationNav.filter((item) => item.title !== "Installation"),
-		...darkModeNav.filter((item) => item.title !== "Dark Mode"),
-		...registryNav,
+		...installationNav,
 	].map((item, index) => ({
 		...item,
 		index,
@@ -315,18 +120,14 @@ export function findNeighbors(pathName: string): {
 
 	let previous: SidebarNavItem | null = null;
 	for (let i = index - 1; i >= 0; i--) {
-		if (fullNavItems[i].href !== "/llms.txt") {
-			previous = fullNavItems[i];
-			break;
-		}
+		previous = fullNavItems[i];
+		break;
 	}
 
 	let next: SidebarNavItem | null = null;
 	for (let i = index + 1; i < fullNavItems.length; i++) {
-		if (fullNavItems[i].href !== "/llms.txt") {
-			next = fullNavItems[i];
-			break;
-		}
+		next = fullNavItems[i];
+		break;
 	}
 
 	return { previous, next };

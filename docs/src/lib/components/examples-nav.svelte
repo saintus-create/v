@@ -4,32 +4,7 @@
 	import ScrollArea from "$lib/registry/ui/scroll-area/scroll-area.svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	const examples = [
-		{
-			name: "Dashboard",
-			href: "/examples/dashboard",
-			code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/dashboard",
-			hidden: false,
-		},
-		{
-			name: "Tasks",
-			href: "/examples/tasks",
-			code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/tasks",
-			hidden: false,
-		},
-		{
-			name: "Playground",
-			href: "/examples/playground",
-			code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/playground",
-			hidden: false,
-		},
-		{
-			name: "Authentication",
-			href: "/examples/authentication",
-			code: "https://github.com/shadcn/ui/tree/main/apps/v4/app/(app)/examples/authentication",
-			hidden: false,
-		},
-	];
+	const examples: { name: string; href: string; code: string; hidden: boolean }[] = [];
 
 	let { class: className, ...restProps }: HTMLAttributes<HTMLElement> = $props();
 </script>
