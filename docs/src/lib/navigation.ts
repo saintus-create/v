@@ -1,5 +1,18 @@
-import { components, installation, migration } from "$content/index.js";
 import type { Component } from "svelte";
+
+// Try to import content, but handle if it doesn't exist
+let components: any[] = [];
+let installation: any[] = [];
+let migration: any[] = [];
+
+try {
+	const content = await import("$content/index.js");
+	components = content.components || [];
+	installation = content.installation || [];
+	migration = content.migration || [];
+} catch (e) {
+	console.warn("Content not loaded yet. Run 'pnpm build:content' first.");
+}
 
 /** List new components here to highlight them in the sidebar */
 export const NEW_COMPONENTS = new Set([]);
