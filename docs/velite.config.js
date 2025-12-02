@@ -27,37 +27,37 @@ const docSchema = s
 
 const gettingStarted = defineCollection({
 	name: "gettingStarted",
-	pattern: "./*.md",
+	pattern: "index.md",
 	schema: docSchema,
 });
 
 const migration = defineCollection({
 	name: "migration",
-	pattern: "./migration/**/*.md",
+	pattern: "migration/**/*.md",
 	schema: docSchema,
 });
 
 const components = defineCollection({
 	name: "components",
-	pattern: "./components/**/*.md",
+	pattern: "components/**/*.md",
 	schema: docSchema,
 });
 
 const installation = defineCollection({
 	name: "installation",
-	pattern: "./installation/**/*.md",
+	pattern: "installation/**/*.md",
 	schema: docSchema,
 });
 
 const darkMode = defineCollection({
 	name: "darkMode",
-	pattern: "./dark-mode/**/*.md",
+	pattern: "dark-mode/**/*.md",
 	schema: docSchema,
 });
 
 const registry = defineCollection({
 	name: "registry",
-	pattern: "./registry/**/*.md",
+	pattern: "registry/**/*.md",
 	schema: docSchema,
 });
 
@@ -71,5 +71,11 @@ export default defineConfig({
 		darkMode,
 		registry,
 	},
-	output: { assets: "static" },
+	output: { 
+		data: ".velite",
+		assets: "static",
+		base: "/",
+		name: "[name]-[hash:8].[ext]",
+		clean: true
+	},
 });
