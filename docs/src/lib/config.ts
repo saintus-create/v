@@ -1,21 +1,21 @@
 export const siteConfig = {
-	name: "Project Name",
-	url: "https://your-project-url.com",
+	name: "shadcn-svelte",
+	url: "https://www.shadcn-svelte.com",
 	ogImage: {
-		url: "https://your-project-url.com/opengraph-image.png",
+		url: "https://www.shadcn-svelte.com/opengraph-image.png",
 		width: "1200",
 		height: "630",
 	},
-	description: "A description of your project.",
-	keywords: ["project", "documentation", "svelte"],
+	description: "Beautifully designed components that you can copy and paste into your apps. Built with Svelte & Tailwind CSS.",
+	keywords: ["svelte", "sveltekit", "shadcn", "ui components", "tailwind", "documentation"],
 	links: {
-		x: "https://x.com/your-handle",
-		github: "https://github.com/your-org/your-repo",
+		x: "https://x.com/shadcn",
+		github: "https://github.com/huntabyte/shadcn-svelte",
 	},
-	author: "Author Name",
-	creator: "Creator Name",
+	author: "huntabyte",
+	creator: "huntabyte",
 	twitter: {
-		creator: "@yourhandle",
-		site: "@yoursite",
+		creator: "@huntabyte",
+		site: "@shadcn",
 	},
 };
